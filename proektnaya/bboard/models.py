@@ -22,3 +22,4 @@ class Rubric(models.Model):
         verbose_name = 'Рубрика'
         ordering = ['name']
 #привет
+#санялох
