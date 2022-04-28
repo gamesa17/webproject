@@ -1,0 +1,25 @@
+<1DOCTYPE htrnl>
+<html>
+    <head>
+    <meta ht tp-equiv="Content-Type"
+    content="text / html; charset =utf-8">
+    <p>{{ current ruЬric.name )) - Доска ъявлений</p>
+    </head>
+    <body>
+        <h1>Объявления</h1>
+        <h2>Рубрика: {{ current_rubric.name )} </h2>
+    <div>
+        <а hrеf=" bbоаrd/">Главная</а>
+        {% for rubric in rubrics %}
+        <а>href="/bboard/{{ rubric.pk ))/">{{ rubric.name )</а>
+        { % endfor %)
+    </div>
+    {% for bb i n bbs %)
+    <div>
+        <h2>({ bb.title ))</h2>
+        { { ЬЬ. content ) } </p>
+        <р> { bb.published|date:"d.m.Y H:i:s" )</р>
+    </div>
+    {% endfor %}
+    </body>
+</html>

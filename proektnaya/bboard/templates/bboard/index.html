@@ -7,12 +7,20 @@
     </head>
     <body>
         <h1>Объявления</h1>
+        <div>
+            <a href='{% url "index" %}'>Главная</a>
+            {% for rubric in rubrics %}
+            <a href='{% url "by_rubric" rubric.pk %}'>{{ rubric.name }}</a>
+            {% endfor %}
+        </div>
         {% for bb in bbs %}
         <div>
             <h2>{{ bb.title }}</h2>
             <p>{{ bb.content }}</p>
+            <p><a href="/bboard/{{ bb.rubric.pk }}/"{{ bb.rubric.name }}></a></p>
             {{ bb.published|date:"d.m.Y H:i:s" }}</р>
         </div>
         {% endfor %}
+    <a href="{% url 'add' %}">Добавить</a>
     </body>
 </html>
