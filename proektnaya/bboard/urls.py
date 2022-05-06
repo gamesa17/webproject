@@ -5,6 +5,7 @@ from django.urls import path
 from bboard.views import index
 from bboard.views import by_rubric
 from bboard.views import BBCreateView
+from bboard.views import CompanyView
 
 
 urlpatterns = [

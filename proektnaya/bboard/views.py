@@ -36,3 +36,11 @@ class BBCreateView(CreateView):
         context = super().get_context_data(**kwargs)
         context['rubrics'] = Rubric.objects.all()
         return context
+
+def CompanyView(request, id):
+    all_objects = BBoard.objects.get(id=id)
+    context = {'all_objects':all_objects}
+    return render(request, 'bboard/company_view.html', context)
+
+
+

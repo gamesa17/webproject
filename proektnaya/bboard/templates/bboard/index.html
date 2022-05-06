@@ -3,7 +3,7 @@
 {% block content %}
 {% for bb in bbs %}
 <div class="b">
-    <h2>{{ bb.title }}</h2>
+    <h2><a href="company/{{ bb.id }}">{{ bb.title }}</a></h2>
     <p>{{ bb.content }}</p>
     {% for rubric in rubrics %}
     <p><a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a></p>

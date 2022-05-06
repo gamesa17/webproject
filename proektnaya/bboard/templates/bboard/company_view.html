@@ -1,0 +1,10 @@
+{% extends 'layout/basic.html' %}
+
+{% block content %}
+<p>Подробнее о {{ all_objects.name }}</p>
+<div>
+    <h2>{{ all_objects.title }}</h2>
+    <p>{{ all_objects.content }}</p>
+    <p>{{ all_objects.published|date:"d.m.Y H:i:s" }}</p>
+</div>
+{% endblock %}

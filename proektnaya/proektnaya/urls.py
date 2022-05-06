@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bboard.views import index
+from bboard.views import CompanyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bboard/', include('bboard.urls')),
+    path('bboard/company/<int:id>', CompanyView, name='company')
 ]
