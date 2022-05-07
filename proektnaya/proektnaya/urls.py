@@ -25,4 +25,6 @@ urlpatterns = [
     path('bboard/company/<int:id>', CompanyView, name='company'),
     #path('user_reg/'),
     #path('user_login/')
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
 ]
