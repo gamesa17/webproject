@@ -21,7 +21,7 @@ def publications_spisok(request):
     return HttpResponse(s, content_type='text/plain; charset=utf-8')
 
 def by_rubric(request, rubric_id):
-    bbs = BBoard.object.filter(rubric = rubric_id)
+    bbs = BBoard.objects.filter(rubric = rubric_id)
     rubrics = Rubric.objects.all()
     current_rubric = Rubric.objects.get(pk = rubric_id)
     context = {'bbs':bbs, 'rubrics':rubrics, 'current_rubric':current_rubric}

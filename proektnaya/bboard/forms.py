@@ -5,4 +5,4 @@ from .models import BBoard
 class BBForm(ModelForm):
     class Meta:
         model = BBoard
-        fields = ('title', 'content', 'price', 'rubic')
+        fields = ('title', 'content', 'price', 'rubric')
