@@ -12,7 +12,7 @@ def index(request):
     bbs = BBoard.objects.all()
     rubrics = Rubric.objects.all()
     context = {'bbs':bbs, 'rubrics':rubrics}
-    return render(request, 'bboard/index.html', context)
+    return render(request, 'layout/basic1.html', context)
 
 def publications_spisok(request):
     s = "Список объявлений\r\n\r\n\r\n"
@@ -42,7 +42,11 @@ def CompanyView(request, id):
     context = {'all_objects':all_objects}
     return render(request, 'bboard/company_view.html', context)
 
+def auth(request):
+    return render(request, 'bboard/auth.html')
 
+def adprofile(request):
+    return render(request, 'bboard/adprofile.html')
 
 
 

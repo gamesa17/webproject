@@ -18,11 +18,13 @@ from django.urls import path, include
 
 from bboard.views import index
 from bboard.views import CompanyView
+from bboard.views import auth
+from bboard.views import adprofile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bboard/', include('bboard.urls')),
     path('bboard/company/<int:id>', CompanyView, name='company'),
-    #path('user_reg/'),
-    #path('user_login/')
+    path('bboard/auth/', auth, name = 'auth'),
+    path('bboard/adprofile', adprofile)
 ]

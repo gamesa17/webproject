@@ -6,7 +6,7 @@ class BBoard(models.Model):
     content = models.TextField(null=True, blank=True, verbose_name = "Описание задачи")
     price = models.FloatField(null=True, blank=True, verbose_name = "Предлогаемая цена")
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name = "Дата публикации")
-    rubric = models.ForeignKey('Rubric', null = True, on_delete = models.PROTECT, verbose_name = "Рубрика")
+    rubric = models.ForeignKey('Rubric', null = True, on_delete = models.PROTECT, verbose_name = "Заказчик")
 
     class Meta:
         verbose_name_plural = "Акутальные предложения"
@@ -21,6 +21,6 @@ class Rubric(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Рубрики'
-        verbose_name = 'Рубрика'
+        verbose_name_plural = 'Заказчики'
+        verbose_name = 'Заказчик'
         ordering = ['name']
