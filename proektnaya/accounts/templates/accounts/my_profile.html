@@ -1,0 +1,17 @@
+{% extends 'layout/basic.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>Главная страница</h1>
+    {% for el in profile %}
+        <div class="alert alert-warning mt-2">
+            <h3>{{ el.first_name}}</h3>
+            <p>{{ el.phone }}</p>
+            <p>{{ el.first_name }}</p>
+            <p>{{ el.last_name }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
