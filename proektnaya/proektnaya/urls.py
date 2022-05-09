@@ -26,5 +26,5 @@ urlpatterns = [
     path('bboard/', include('bboard.urls')),
     path('bboard/company/<int:id>', CompanyView, name='company'),
     path('bboard/auth/', auth, name = 'auth'),
-    path('bboard/adprofile', adprofile)
+    path('bboard/adprofile/', adprofile)
 ]
