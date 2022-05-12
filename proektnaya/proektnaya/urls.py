@@ -20,11 +20,18 @@ from bboard.views import index
 from bboard.views import CompanyView
 from bboard.views import auth
 from bboard.views import adprofile
+from accounts.views import register
+from accounts.views import showprofile
+from bboard.views import login_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bboard/', include('bboard.urls')),
     path('bboard/company/<int:id>', CompanyView, name='company'),
     path('bboard/auth/', auth, name = 'auth'),
-    path('bboard/adprofile/', adprofile)
+    path('bboard/adprofile/', adprofile, name = 'adprofile'),
+    path('reg_user/', register, name = 'reg_user'),
+    path('signup/', register, name='signup'),
+    path('my_profile', showprofile, name='my_profile'),
+    path('login/', login_user, name = 'login')
 ]

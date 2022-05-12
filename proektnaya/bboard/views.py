@@ -12,7 +12,7 @@ def index(request):
     bbs = BBoard.objects.all()
     rubrics = Rubric.objects.all()
     context = {'bbs':bbs, 'rubrics':rubrics}
-    return render(request, 'layout/basic1.html', context)
+    return render(request, 'layout/basic2.html', context)
 
 def publications_spisok(request):
     s = "Список объявлений\r\n\r\n\r\n"
@@ -48,5 +48,10 @@ def auth(request):
 def adprofile(request):
     return render(request, 'bboard/adprofile.html')
 
+def reg_user(request):
+    return render(request, 'bboard/adprofile.html')
+
+def login_user(request):
+    return render(request, 'accounts/login.html')
 
 

@@ -52,4 +52,5 @@ function AuthSwitchReg() {
     LogIn = false;
 }
 
+
 AuthSwitchLogIn();
