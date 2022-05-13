@@ -7,6 +7,7 @@ var namefield = document.getElementById('namefield');
 var passfield = document.getElementById('passfield');
 var passrepeatfield = document.getElementById('passrepeatfield');
 
+
 var LogIn = true;
 
 function AuthSwitchLogIn() {

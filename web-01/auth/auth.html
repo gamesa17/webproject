@@ -13,24 +13,24 @@
     <div class="header__wrapper">
         <a href="../main/main.html" class="header-nav-ref">Главная</a>
         <a href="" class="header-nav-ref">Объявления</a>
-        <a href="" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--color-secondary)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <a href="../profile/profile.html" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <circle cx="12" cy="7" r="4" />
                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-            </svg>
+              </svg>
         </a>
-        <button id="button-switcher-press" onclick="ThemeSwitch()" style="background-color: var(--color-first); border: none; left: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+        <button id="button-switcher-press" onclick="ThemeSwitch()" style="background-color: black; border: none; left: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
             <div id="condition-non-active" style="position: absolute; top: 0; width: 100%; height: 100%; left: 0; transition: .5s; opacity: 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--color-secondary)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
                     <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
-                    <path d="M19 11h2m-1 -1v2"/>
+                    <path d="M19 11h2m-1 -1v2" />
                   </svg>
             </div>
             <div id="condition-active" style="position: absolute; top: 0; width: 100%; height: 100%; left: 0; transition: .5s;">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--color-secondary)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <circle cx="12" cy="12" r="4" />
                     <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
@@ -53,15 +53,20 @@
                     <p style="font-size: var(--font-small);">Регистрация</p>
                 </button>
             </div>
-            <div style="display: flex; flex-direction: column; justify-content: space-evenly; height: 90%;">
-            <input class="auth__input" id="loginfield" type="text" placeholder="Логин/Почта">
-            <input class="auth__input" id="namefield" type="text" placeholder="Имя/Ник">
-            <input class="auth__input" id="passfield" type="text"placeholder="Пароль">
-            <input class="auth__input" id="passrepeatfield" type="text"placeholder="Повторите пароль">
-            <button class="unibtn" id="login-btn" style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> Войти в аккаунт</button>
-            <button class="unibtn" id="reg-btn" style="transition: .2s; margin-top: -7% ;margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> Регистрация</button>
-            </div>
+
+            <form action="" style="height: 90%;">
+                <div style="display: flex; flex-direction: column; justify-content: space-evenly; height: 100%;">
+                <input class="auth__input" id="loginfield" type="text" placeholder="Почта" spellcheck="false">
+                <input class="auth__input" id="namefield" type="text" placeholder="Имя" spellcheck="false">
+                <input class="auth__input" id="passfield" type="text"placeholder="Пароль" spellcheck="false">
+                <input class="auth__input" id="passrepeatfield" type="text"placeholder="Повторите пароль" spellcheck="false">
+                <input class="unibtn" id="login-btn" type="submit" value="Войти" style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> 
+                <input class="unibtn" id="reg-btn" type="submit" value="Регистрация"  style="transition: .2s; margin-top: -7% ;margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> 
+                </div>
+            </form>
+            
         </div>
+        
     </div>
 </section>
 
