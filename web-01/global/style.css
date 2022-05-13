@@ -35,12 +35,18 @@ body::-webkit-scrollbar-thumb {
     --color-secondary: rgb(0, 0, 0);
     --color-rigid: var(--color-grey-embient);
 
-    --border-width: calc(var(--index-scale) * 0.15);
+    --border-width: calc(var(--index-scale) * 0.1);
 }
 
 .container{
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.container__body{
+    margin: 5%;
+    height: 90%;
+    width: 90%;
 }
 
 .container__footer{
@@ -71,6 +77,42 @@ body::-webkit-scrollbar-thumb {
     background-color: var(--color-hover); 
 }
 
+.textbtn{
+    --color-basic-text: white;
+    --color-hover-text: black;
+    --color-background: var(--color-first)
+    --hover-underline: none;
+
+    display: block;
+    height: calc(var(--index-scale) * 3); 
+    width: calc(var(--index-scale) * 12);
+    border-radius: 30px; 
+    font-weight: 600;
+    color: var(--color-basic-text);
+    background-color: var(--color-background);
+    font-size: var(--font-small); 
+    border: none;
+    transition: .1s;
+    transition-property: color;
+}
+
+.textbtn:hover{
+    color: var(--color-hover-text); 
+    text-decoration:var(--hover-underline);
+}
+
+.input__bar{
+    font-family:'Inter';
+    font-weight: 600;
+    padding: 5%;
+    font-size: var(--font-small);
+
+    border: var(--border-width) solid #000000;
+    border-radius: 20px;
+    outline: none;
+    resize: none;
+}
+
 .header{
     position:-webkit-sticky;
     margin: 0;
@@ -79,7 +121,7 @@ body::-webkit-scrollbar-thumb {
     width: 100%;
     height: calc(var(--index-scale) * 3);
 
-    background-color: var(--color-first);
+    background-color: black;
 }
 
 .header__wrapper{
@@ -96,7 +138,7 @@ body::-webkit-scrollbar-thumb {
     text-align: center; 
     font-size: var(--font-small); 
     margin: 0; 
-    color: var(--color-secondary); 
+    color: white; 
     text-decoration: none;
     transition: .5s;
 }
