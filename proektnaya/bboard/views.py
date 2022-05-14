@@ -5,6 +5,7 @@ from .forms import BBCreateView
 from .models import BBoard
 from .models import Rubric
 from .forms import BBForm
+from django.shortcuts import render, redirect
 
 def index(request):
     bbs = BBoard.objects.all()
@@ -39,13 +40,15 @@ def login_user(request):
     return JsonResponse(data)
 
 def profile(request):
-    return render(request, 'bboard/profile.html')
+    user = request.user
+    context = {'user':user}
+    return render(request, 'bboard/profile.html', context)
 
 def adcreate(request):
     return render(request, 'bboard/adcreate.html')
 
 def createnew(request):
-    if request.method == 'post':
+    if request.method == 'POST':
         form = BBCreateView(request.POST)
 
 
@@ -57,3 +60,4 @@ def createnew(request):
         form = BBCreateView()
 
     return render(request, 'layout/basic2.html')
+

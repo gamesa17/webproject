@@ -48,6 +48,18 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'bboard/profile.html')
 
+def editname(request):
+    if request.method == 'POST':
+        print(request.POST)
+        print(request.user.username)
+        for p in request.POST:
+            print(p)
+        request.user.username = request.POST['user_name']
+        print(request.user.username)
+        request.user.save()
+        redirect('profile')
+    return render(request, 'bboard/profile.html')
+
 
 def showprofile(request):
     #profile = request.user

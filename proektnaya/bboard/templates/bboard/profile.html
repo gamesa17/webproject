@@ -13,9 +13,9 @@
 
 <div class="header" id="header">
     <div class="header__wrapper">
-        <a href="http://127.0.0.1:8000/bboard" class="header-nav-ref">Главная</a>
+        <a href="{% url 'index' %}" class="header-nav-ref">Главная</a>
         <a href="" class="header-nav-ref">Объявления</a>
-        <a href="profile.html" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+        <a href="{% url 'profile' %}" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <circle cx="12" cy="7" r="4" />
@@ -39,7 +39,6 @@
                   </svg>
             </div>
         </button>
-        <div style="position: absolute; bottom:0; height: var(--border-width); width: 100%; background-color: black;"></div>
     </div>
 </div>
 
@@ -52,9 +51,10 @@
         </div>
 
         <div style="height: 80%; width: 66.66%; margin-right: 5%; display: flex; align-items: center;">
-            <form action="" style="width: 100%; height: 100%;  display: flex; align-items: center; justify-content: center;"> 
+            <form action="{% url 'newname' %}" method='post' style="width: 100%; height: 100%;  display: flex; align-items: center; justify-content: center;">
+                {% csrf_token %}
             <div id="name-edit-container" style="width: 30%; display: flex; align-items: center; flex-direction: column;">
-                <input class="input__bar"  id = "editname-input"  type="text" name="username" placeholder="-" spellcheck="false" style="height: 20%; width: 70%; font-size: var(--font-medium);">
+                <input class="input__bar"  id = "editname-input"  type="text" name="user_name" placeholder="-" spellcheck="false" style="height: 20%; width: 70%; font-size: var(--font-medium);">
                 <input class ="textbtn" type="submit" value="Изменить" 
                 style="
                 height: 10%;
@@ -63,7 +63,7 @@
                 --hover-underline: underline">
             </input>
             </div>
-            <p id = "profile-name" style="font-size: var(--font-large); color: white;">SBER</p>
+            <p id = "profile-name" style="font-size: var(--font-large); color: white;">{{ user.username }}</p>
             </form>
             <button class="textbtn" id = "editname-btn" onclick="EditName()"
             style="--color-background: var(--color-blue-embient);
@@ -114,7 +114,7 @@
                 <textarea class="input__bar" type="text" name="discription" placeholder="Пару слов о себе" spellcheck="true" style="height: 12%; width: 80%; margin-top: 1%; margin-bottom: 20px;"></textarea>
 
                 <label style="color: var(--color-secondary); font-size: var(--font-small); ">Почта: </label>
-                <input class="input__bar" type="text" name="email" placeholder="Ваша почта" spellcheck="false" style="height: 2%; width: 80%; margin-top: 1%; margin-bottom: 20px;"></input>
+                <input class="input__bar" type="text" name="email" placeholder="Ваша почта" value="{{ user.email }}" spellcheck="false" style="height: 2%; width: 80%; margin-top: 1%; margin-bottom: 20px;"></input>
 
                 <div style="height: 40%; width: 90%; display: flex; flex-direction: column; justify-content: center;">
                     <button class="textbtn" style="height: 33.33%; align-self: center;

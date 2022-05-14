@@ -10,11 +10,11 @@ class BBForm(ModelForm):
         fields = ('title', 'content')
 
 
-class BBCreateView(CreateView):
+class BBCreateView(ModelForm):
     title = forms.CharField()
     content = forms.CharField()
 
-    class Meta(CreateView):
+    class Meta(ModelForm):
         model = BBoard
         fields = ('title', 'content')
 
