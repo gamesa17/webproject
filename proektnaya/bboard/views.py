@@ -1,16 +1,10 @@
 from django.http import HttpResponse
 #from django.template import loader
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
-from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.models import User
-
+from .forms import BBCreateView
 from .models import BBoard
 from .models import Rubric
 from .forms import BBForm
-from .forms import AuthUserForm
-from .forms import RegUserForm
 
 def index(request):
     bbs = BBoard.objects.all()
@@ -31,28 +25,6 @@ def by_rubric(request, rubric_id):
     context = {'bbs':bbs, 'rubrics':rubrics, 'current_rubric':current_rubric}
     return render(request, 'bboard/by_rubric.html', context)
 
-class BBCreateView(CreateView):
-    template_name = 'bboard/create.html'
-    form_class = BBForm
-    success_url = reverse_lazy('index')
-    succes_msg = "Пользователь успешно создан!"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['rubrics'] = Rubric.objects.all()
-        return context
-
-class BBoardLoginView(LoginView):
-    template_name = 'bboard/auth.html'
-    form_class = AuthUserForm
-    succes_url = reverse_lazy('auth')
-
-class BBoardRegUser(CreateView):
-    model = User
-    template_name = 'bboard/auth.html'
-    form_class = RegUserForm
-    succe_url = reverse_lazy('auth')
-    succes_msg = "Пользователь успешно создан!"
 
 def CompanyView(request, id):
     all_objects = BBoard.objects.get(id=id)
@@ -68,3 +40,20 @@ def login_user(request):
 
 def profile(request):
     return render(request, 'bboard/profile.html')
+
+def adcreate(request):
+    return render(request, 'bboard/adcreate.html')
+
+def createnew(request):
+    if request.method == 'post':
+        form = BBCreateView(request.POST)
+
+
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+
+    else:
+        form = BBCreateView()
+
+    return render(request, 'layout/basic2.html')

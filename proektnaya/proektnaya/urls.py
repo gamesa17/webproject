@@ -24,14 +24,16 @@ from accounts.views import showprofile
 from bboard.views import login_user
 #from bboard.views import BBoardLoginView, BBoardRegUser
 from bboard.views import profile
+from bboard.views import adcreate
+from bboard.views import createnew
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bboard/', include('bboard.urls')),
     path('bboard/company/<int:id>', CompanyView, name='company'),
-    path('bboard/auth/', auth, name = 'auth'),
-    #path('bboard/auth/', BBoardLoginView.as_view(), name = 'auth'),
-    #path('bboard/auth/', BBoardRegUser.as_view(), name ='auth'),
-    path('bboard/profile', profile, name = 'profile'),
+    path('auth/', auth, name = 'auth'),
+    path('profile/', profile, name = 'profile'),
     path('', include("accounts.urls")),
+    #path('addcreate/add', createnew, name = 'add'),
+    path('', include('bboard.urls')),
+    path('adcreate/', adcreate, name = 'adcreate')
 ]

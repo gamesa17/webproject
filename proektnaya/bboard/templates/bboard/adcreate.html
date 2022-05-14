@@ -1,0 +1,129 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bboard/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bboard/profile.css' %}">
+    <link rel="stylesheet" href="http://127.0.0.1:8000/adcreate/">
+    <title>ad-create</title>
+
+</head>
+
+<div class="header" id="header">
+    <div class="header__wrapper">
+        <a href="http://127.0.0.1:8000/bboard" class="header-nav-ref">Главная</a>
+        <a href="" class="header-nav-ref">Объявления</a>
+        <a href="profile.html" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="12" cy="7" r="4" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+              </svg>
+        </a>
+        <button id="button-switcher-press" onclick="ThemeSwitch()" style="background-color: black; border: none; left: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+            <div id="condition-non-active" style="position: absolute; top: 0; width: 100%; height: 100%; left: 0; transition: .5s; opacity: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon-stars" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+                    <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+                    <path d="M19 11h2m-1 -1v2" />
+                  </svg>
+            </div>
+            <div id="condition-active" style="position: absolute; top: 0; width: 100%; height: 100%; left: 0; transition: .5s;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <circle cx="12" cy="12" r="4" />
+                    <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+                  </svg>
+            </div>
+        </button>
+    </div>
+</div>
+
+<section class="profile__settings" id = 'settings'>
+    <div class="profile__settings__head">
+        <div style="height: 65%; width: 33.33%; margin-left: 5%;">
+            <div style="height: 100%; width: 100%; display: flex; align-items: center;">
+                <img src="{% static 'bboard/mos-polytech.jpg' %}" style="height: calc(var(--index-scale) * 9); max-height: 100%; border-radius: 20px;" alt="">
+            </div>
+        </div>
+
+        <div style="height: 80%; width: 66.66%; margin-right: 5%; display: flex; align-items: center; justify-content: center;">
+            <p id = "profile-name" style="font-size: var(--font-large); color: white;">Создание проекта</p>
+            </button>
+        </div>
+    </div>
+
+    <div class="profile__settings_body" id = "settings-body">
+        <div class="container__body" style="margin-bottom: 0; margin-top: 0; height: 90vh;">
+            <form action="{% url 'add' %}" method='post' style="height: 100%;">
+                {% csrf_token %}
+
+            <div class="settings-horizontal-wrapper" style = "height: 80vh; float: right; display: flex; flex-direction: column; justify-content: space-evenly;">
+                <label for="" style="color: var(--color-secondary);font-size: var(--font-small);">Загрузите изображения:</label>
+                <input  class ="uniloader" type="file" name="image-1">
+                <input  class ="uniloader" type="file" name="image-2">
+                <input  class ="uniloader" type="file" name="image-3">
+                <input  class ="uniloader" type="file" name="image-4">
+                <input  class ="uniloader" type="file" name="image-5">
+                <input  class ="uniloader" type="file" name="image-6">
+            </div>
+
+            <div class="settings-horizontal-wrapper" style = "height: 80vh; display: flex; flex-direction: column; justify-content: space-evenly; --align-condition: center;">
+                <label style="color: var(--color-secondary); font-size: var(--font-small); margin-top: 5%; ">Название проекта: </label>
+                <input class="input__bar" type="text" name="title" placeholder="Придумайте название" spellcheck="false" style="height: 2%; width: 80%; margin-top: 1%; margin-bottom: 20px;"></input>
+
+                <label style="color: var(--color-secondary); font-size: var(--font-small); ">Описание проекта: </label>
+                <textarea class="input__bar" type="text" name="content" placeholder="Пару слов о особенностях и целях" spellcheck="true" style="height: 12%; width: 80%; margin-top: 1%; margin-bottom: 20px;"></textarea>
+
+                <div style="height: 40%; width: 90%; display: flex; flex-direction: column; justify-content: center;">
+                    <button class="textbtn" style="height: 33.33%; align-self: center;
+                    --color-basic-text: var(--color-blue-embient);
+                    --color-hover-text: var(--color-blue-embient); 
+                    --hover-underline: underline; 
+                    display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    Приватность проекта
+                    <img src="{% static 'bboard/shield.svg' %}" alt="" style="height: 30px; width: 30px;">
+                    </button>
+
+                    <button class="textbtn" style="height: 33.33%; align-self: center;
+                    --color-basic-text: #FF6363; 
+                    --color-hover-text: #FF6363;
+                    --hover-underline: underline; 
+                    display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    Удалить проект
+                    <img src="{% static 'bboard/delete-cross-red.svg' %}" alt="" style="height: 30px; width: 30px;">
+                    </button>
+                </div>
+            </div>
+            
+            <div style="width: 100%; height: 10vh; display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <input class ="textbtn" type="submit" value="Создать проект" style="width: 50%;
+                height: 100%; align-self: center;
+                font-size: var(--font-medium);
+                --color-basic-text: var(--color-secondary); 
+                --color-hover-text: var(--color-blue-embient);
+                --hover-underline: underline">
+                 <img src="{% static 'bboard/bubble.svg' %}" alt="" style="height: 30px; width: 30px;">
+            </div>
+
+            </form>
+        </div>
+    </div>
+
+    <div class="profile__settings__extractor">
+    </div>
+</section>
+
+<body class="body">
+    
+</body>
+
+<script src="{% static 'bboard/style-inlet.js' %}"></script>
+<script src="{% static 'bboard/profile.js' %}"></script>
+<script src="{% static 'bboard/adcreate.js' %}"></script>
+</html>

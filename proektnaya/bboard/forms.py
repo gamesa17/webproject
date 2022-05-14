@@ -1,21 +1,21 @@
 from django.forms import ModelForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.models import User
-
+from django import forms
+from django.views.generic.edit import CreateView
+from django.urls import reverse_lazy
 from .models import BBoard
 
 class BBForm(ModelForm):
     class Meta:
         model = BBoard
-        fields = ('title', 'content', 'price', 'rubric')
+        fields = ('title', 'content')
 
 
-class AuthUserForm(AuthenticationForm, ModelForm):
-    class Meta:
-        model = User
-        fields = ('username', 'password')
+class BBCreateView(CreateView):
+    title = forms.CharField()
+    content = forms.CharField()
 
-class RegUserForm():
-    class Meta:
-        model = User
-        fields = ('username', 'password')
+    class Meta(CreateView):
+        model = BBoard
+        fields = ('title', 'content')
+
+
