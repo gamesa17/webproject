@@ -12,7 +12,7 @@
     background:
     linear-gradient(0deg, rgba(99, 114, 255, 0.76),
     rgba(99, 114, 255, 0.76)),
-    url({% static 'bboard/sber-project-background.jpg' %});
+    url("/static/bboard/sber-project-background.jpg");
     background-color: var(--color-blue-embient);
     background-repeat: no-repeat;
     background-size: cover;

@@ -2,7 +2,7 @@ from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from .models import CustomUser
-from .forms import CustomUserCreationForm
+from .forms import CustomUser
 from django.shortcuts import render, redirect
 
 
@@ -13,16 +13,27 @@ from django.shortcuts import render, redirect
 
 def register(request):
     if request.method == 'POST':
+        print(request.POST)
+
         form = CustomUserCreationForm(request.POST)
+
+
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('profile')
+
     else:
         form = CustomUserCreationForm()
 
-    return render(request, 'accounts/signup.html', {'form': form})
+    print('form is not valid', form.errors)
+    return render(request, 'bboard/profile.html')
 
 
 def showprofile(request):
+    #profile = request.user
     profile = CustomUser.objects.all()
-    return render(request, 'accounts/my_profile.html', {'title': 'Главная страница', 'profile': profile})
+    context = {'profile': profile}
+    #print(request.user.is_authenticated())
+    return render(request, 'bboard/users.html', context)
+
+

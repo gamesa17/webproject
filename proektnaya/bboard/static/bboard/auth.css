@@ -13,7 +13,7 @@
     width: 100%;
     height: calc(100vh - (var(--index-scale) * 3));;
 
-    background-image: url({% static 'bboard/mesh-gradient-blue.png' %} );
+    background-image: url('/static/bboard/mesh-gradient-blue.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -36,8 +36,8 @@
 
 .auth__window{
     overflow: hidden;
-    width: 45%;
-    height: calc(var(--index-scale) * 23);
+    width: 50%;
+    height: calc(var(--index-scale) * 25);
     background-color: var(--color-first);
     border: var(--border-width) solid #000000;
     border-radius: 20px;

@@ -1,0 +1,10 @@
+<h1>Новая история!</h1>
+<form action="http://127.0.0.1:8000/admin/" method="POST">
+   {% csrf_token %}
+   {{form}}
+    <input class="auth__input" id="loginfield" name="email" type="text" placeholder="Почта" spellcheck="false">
+    <input class="auth__input" id="namefield" name="username" type="text" placeholder="Имя" spellcheck="false">
+    <input class="auth__input" id="passfield" name="password1" type="password" placeholder="Пароль" spellcheck="false">
+    <input class="auth__input" id="passrepeatfield" name="password2" type="password"placeholder="Повторите пароль" spellcheck="false">
+    <input class="unibtn" id="reg-btn" type="submit" value="Регистрация"  style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;">
+</form>

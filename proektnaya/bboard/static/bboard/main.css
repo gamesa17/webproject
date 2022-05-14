@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
 
-    background-image: url('{{ STATIC_URL }}/bboard/mesh-gradient-blue.png');
+    background-image: url('/static/bboard/mesh-gradient-blue.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

@@ -23,4 +23,6 @@ class Rubric(models.Model):
     class Meta:
         verbose_name_plural = 'Заказчики'
         verbose_name = 'Заказчик'
-        ordering = ['name']
+        ordering = ['name']\
+
+

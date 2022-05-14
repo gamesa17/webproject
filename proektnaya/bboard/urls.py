@@ -9,6 +9,7 @@ from bboard.views import CompanyView
 
 
 
+
 urlpatterns = [
     path('add/', BBCreateView.as_view(), name = 'add'),
     path('<int:rubric_id>/', by_rubric, name = 'by_rubric'),

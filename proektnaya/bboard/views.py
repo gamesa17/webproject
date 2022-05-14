@@ -3,10 +3,14 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 
 from .models import BBoard
 from .models import Rubric
 from .forms import BBForm
+from .forms import AuthUserForm
+from .forms import RegUserForm
 
 def index(request):
     bbs = BBoard.objects.all()
@@ -31,11 +35,24 @@ class BBCreateView(CreateView):
     template_name = 'bboard/create.html'
     form_class = BBForm
     success_url = reverse_lazy('index')
+    succes_msg = "Пользователь успешно создан!"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['rubrics'] = Rubric.objects.all()
         return context
+
+class BBoardLoginView(LoginView):
+    template_name = 'bboard/auth.html'
+    form_class = AuthUserForm
+    succes_url = reverse_lazy('auth')
+
+class BBoardRegUser(CreateView):
+    model = User
+    template_name = 'bboard/auth.html'
+    form_class = RegUserForm
+    succe_url = reverse_lazy('auth')
+    succes_msg = "Пользователь успешно создан!"
 
 def CompanyView(request, id):
     all_objects = BBoard.objects.get(id=id)
@@ -43,15 +60,11 @@ def CompanyView(request, id):
     return render(request, 'bboard/company_view.html', context)
 
 def auth(request):
-    return render(request, 'bboard/auth.html')
-
-def adprofile(request):
-    return render(request, 'bboard/adprofile.html')
-
-def reg_user(request):
-    return render(request, 'bboard/adprofile.html')
+    return render(request, 'bboard/auth2.html')
 
 def login_user(request):
-    return render(request, 'accounts/login.html')
+    result = request.GET.get('login')
+    return JsonResponse(data)
 
-
+def profile(request):
+    return render(request, 'bboard/profile.html')

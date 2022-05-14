@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,15 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>auth</title>
-    <link rel="stylesheet" href="../global/style.css">
-    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="{% static 'bboard/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bboard/auth.css' %}">
 </head>
 
 <div class="header" id="header">
     <div class="header__wrapper">
-        <a href="../main/main.html" class="header-nav-ref">Главная</a>
+        <a href="http://127.0.0.1:8000/bboard" class="header-nav-ref">Главная</a>
         <a href="" class="header-nav-ref">Объявления</a>
-        <a href="../profile/profile.html" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
+        <a href="profile.html" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <circle cx="12" cy="7" r="4" />
@@ -54,13 +56,14 @@
                 </button>
             </div>
 
-            <form action="" style="height: 90%;" id="reg-form">
+            <form action="{% url 'signup' %}" method="post" style="height: 90%;" id="reg-form">
+                {% csrf_token %}
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly; height: 100%;">
-                <input class="auth__input" id="loginfield" name="email" type="text" placeholder="Почта" spellcheck="false">
-                <input class="auth__input" id="namefield" name="username" type="text" placeholder="Имя" spellcheck="false">
-                <input class="auth__input" id="passfield" name="pass" type="password" placeholder="Пароль" spellcheck="false">
-                <input class="auth__input" id="passrepeatfield" name="pass-repeat" type="password"placeholder="Повторите пароль" spellcheck="false">
-                <input class="unibtn" id="reg-btn" type="submit" value="Регистрация"  style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> 
+                <input class="auth__input" id="loginfield" type="text" placeholder="Почта" spellcheck="false" name="email">
+                <input class="auth__input" id="namefield" type="text" placeholder="Имя" spellcheck="false" name="username">
+                <input class="auth__input" id="passfield" type="password" placeholder="Пароль" spellcheck="false" name="password1">
+                <input class="auth__input" id="passrepeatfield" type="password"placeholder="Повторите пароль" spellcheck="false" name="password2">
+                <input class="unibtn" id="reg-btn" name="reg_btn" type="submit" value="Регистрация" style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;">
                 </div>
             </form>
             
@@ -68,7 +71,7 @@
                 <div style="display: flex; flex-direction: column; justify-content: space-evenly; height: 100%;">
                 <input class="auth__input" id="loginfield" name="email" type="text" placeholder="Почта" spellcheck="false">
                 <input class="auth__input" id="passfield" name="pass" type="password" placeholder="Пароль" spellcheck="false">
-                <input class="unibtn" id="login-btn" type="submit" value="Войти" style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;"> 
+                <input class="unibtn" id="login-btn" type="submit" value="Войти" style="transition: .2s; margin-left: auto; margin-right: auto; --color-basic: var(--color-blue-embient); --color-basic-text: white;">
                 </div>
             </form>
 
@@ -141,6 +144,6 @@
 <body class="body">
 </body>
 
-<script src="../global/style-inlet.js"></script>
-<script src="auth.js" ></script>
+<script src="{% static 'bboard/style-inlet.js' %}"></script>
+<script src="{% static 'bboard/auth.js' %}" ></script>
 </html>
