@@ -240,6 +240,63 @@ grid; align-items: center;  row-gap: 20px; margin: auto; column-gap: 15px;">
   
 </section>
 
+<section class="profile__response" style="width: 100%">
+    <div class="profile__response__header" style="height: 15vh; width: 100%;">
+        <div class="container" style="width:90%; height: 100%; display: flex; flex-direction: column;" >
+        <div style="position: relative; top: 20px; height: 2px; width: 100%; background-color: var(--color-secondary);"> </div>
+        <p style="color: var(--color-secondary); font-size:  var(--font-small); align-self: center; justify-self: center; margin-top: auto;">Мой отклик</p>
+        </div>
+    </div>
+
+    <div class="profile__responce__body">
+        <div class="container" style="width:90%; height: 100%; display: flex; flex-direction: column;
+        row-gap: 20px; margin: auto; column-gap: 15px; display: grid; align-items: center;" >
+        
+            <div class="response__card">
+                <div style="height: 2px; background-color: var(--color-rigid);"></div>
+                <div class="responce__card__body" style="height: 20vh; display: flex;">
+                    <div style="width: 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        <img src="../global/resourses/mos-polytech.jpg" alt="" style="height: 70%; width: 70%; border-radius: 20px; object-fit: contain;">
+                    </div>
+        
+                    <div style="width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                        <a href=" " style="font-size: var(--font-small); margin: 0; margin-top: 5%; color: var(--color-secondary);">Projectname</a>
+                        <p style="font-size: calc(var(--font-tiny)); margin-bottom: 5%; color: var(--color-secondary);">
+                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog
+                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog
+                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog
+                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog
+                        </p>
+                    </div>
+        
+                    <div style="width: 30%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+                        <button class="textbtn" onclick = "closeUpSettings(this)"
+                        style="height: 100%; align-self: center; margin-top: auto;
+                        --color-basic-text: var(--color-blue-embient); 
+                        --color-hover-text: var(--color-blue-embient); 
+                        /* --hover-underline: underline; */
+                        display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        Состояние: в обработке
+                        </button>
+        
+                        <button class="textbtn" onclick = "closeUpSettings(this)"
+                        style="height: 100%; align-self: center;
+                        --color-basic-text: #FF6363; 
+                        --color-hover-text: #FF6363;
+                        --hover-underline: underline;
+                        display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        Отменить заявку
+                        <img src="..//global/resourses/svg/delete-cross-red.svg" alt="" style="height: 30px; width: 30px;">
+                        </button>
+                    </div>
+                </div>
+                <div style="height: 2px; background-color: var(--color-rigid);"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 <section class="footer">
     <div class="container__footer" style="width:90%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <div style="position: relative; top: 20px; height: 2px; width: 100%; background-color: var(--color-secondary)"> </div>
