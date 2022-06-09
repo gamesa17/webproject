@@ -54,33 +54,33 @@
 
 
 <section class="ad-container">
-    <div class="ad-horizon">
-        <div class="ad-content">
-            <div class="ad-image-container">
-                <img class="ad-image-author" src="{% static 'bboard\mos-polytech.jpg' %}" alt="">
-                <img class="ad-image-background" src="{% static 'bboard\mesh-gradient-blue.png' %}" alt="">
-            </div>
-            <div class="ad-text-container">
-                <p class="ad-text-title" >Ищу команду</p>
-                <div class ="ad-text-content">Как уже неоднократно упомянуто,
-                    диаграммы связей призывают нас к новым свершениям, которые, в свою очередь, должны быть функционально
-                    разнесены на независимые элементы. А ещё сделанные на базе интернет-аналитики выводы могут быть смешаны с не
-                    уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.
-                     Предварительные выводы неутешительны: повышение уровня гражданского сознания
-                     способствует подготовке и реализации модели развития.</div>
-            </div>
-            <a href="adprofile/" class ="ad-connect-ref">
-                <div class ="ad-connect-content-ref">
-                    <p class ="ad-connect-ref-title">Вступить</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--svg-ref-color)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="7" y1="7" x2="17" y2="17"/>
-                        <polyline points="17 8 17 17 8 17" />
-                    </svg>
-                </div>
-            </a>
-        </div>
-    </div>
+{#    <div class="ad-horizon">#}
+{#        <div class="ad-content">#}
+{#            <div class="ad-image-container">#}
+{#                <img class="ad-image-author" src="{% static 'bboard\mos-polytech.jpg' %}" alt="">#}
+{#                <img class="ad-image-background" src="{% static 'bboard\mesh-gradient-blue.png' %}" alt="">#}
+{#            </div>#}
+{#            <div class="ad-text-container">#}
+{#                <p class="ad-text-title" >Ищу команду</p>#}
+{#                <div class ="ad-text-content">Как уже неоднократно упомянуто,#}
+{#                    диаграммы связей призывают нас к новым свершениям, которые, в свою очередь, должны быть функционально#}
+{#                    разнесены на независимые элементы. А ещё сделанные на базе интернет-аналитики выводы могут быть смешаны с не#}
+{#                    уникальными данными до степени совершенной неузнаваемости, из-за чего возрастает их статус бесполезности.#}
+{#                     Предварительные выводы неутешительны: повышение уровня гражданского сознания#}
+{#                     способствует подготовке и реализации модели развития.</div>#}
+{#            </div>#}
+{#            <a href="" class ="ad-connect-ref">#}
+{#                <div class ="ad-connect-content-ref">#}
+{#                    <p class ="ad-connect-ref-title">Вступить</p>#}
+{#                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--svg-ref-color)" fill="none" stroke-linecap="round" stroke-linejoin="round">#}
+{#                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>#}
+{#                        <line x1="7" y1="7" x2="17" y2="17"/>#}
+{#                        <polyline points="17 8 17 17 8 17" />#}
+{#                    </svg>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
     {% for bb in bbs %}
     <div class="ad-cube">
         <div class="ad-content">
@@ -91,8 +91,9 @@
             <div class="ad-text-container">
                 <p class="ad-text-title">Ищу команду</p>
                 <div class ="ad-text-content">{{ bb.content }}</div>
+                <div class ="ad-text-content">{{ bb.author.username }}</div>
             </div>
-            <a href="" class ="ad-connect-ref">
+            <a href="/details/{{bb.id}}" class ="ad-connect-ref">
                 <div class ="ad-connect-content-ref">
                     <p class ="ad-connect-ref-title">Вступить</p>
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--svg-ref-color)" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -105,28 +106,28 @@
          </div>
     </div>
     {% endfor %}
-    <div class="ad-horizon">
-        <div class="ad-content">
-            <div class="ad-image-container">
-                <img class="ad-image-author" src="{% static 'bboard\mos-polytech.jpg' %}" alt="">
-                <img class="ad-image-background" src="{% static 'bboard\mesh-gradient-blue.png' %}" alt="">
-            </div>
-            <div class="ad-text-container">
-                <p class="ad-text-title" >Ищу команду</p>
-                <div class ="ad-text-content">Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я. Я так счастлив.</div>
-            </div>
-            <a href="" class ="ad-connect-ref">
-                <div class ="ad-connect-content-ref">
-                    <p class ="ad-connect-ref-title">Вступить</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--svg-ref-color)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <line x1="7" y1="7" x2="17" y2="17"/>
-                        <polyline points="17 8 17 17 8 17" />
-                    </svg>
-                </div>
-            </a>
-        </div>
-    </div>
+{#    <div class="ad-horizon">#}
+{#        <div class="ad-content">#}
+{#            <div class="ad-image-container">#}
+{#                <img class="ad-image-author" src="{% static 'bboard\mos-polytech.jpg' %}" alt="">#}
+{#                <img class="ad-image-background" src="{% static 'bboard\mesh-gradient-blue.png' %}" alt="">#}
+{#            </div>#}
+{#            <div class="ad-text-container">#}
+{#                <p class="ad-text-title" >Ищу команду</p>#}
+{#                <div class ="ad-text-content">Душа моя озарена неземной радостью, как эти чудесные весенние утра, которыми я наслаждаюсь от всего сердца. Я совсем один и блаженствую в здешнем краю, словно созданном для таких, как я. Я так счастлив.</div>#}
+{#            </div>#}
+{#            <a href="" class ="ad-connect-ref">#}
+{#                <div class ="ad-connect-content-ref">#}
+{#                    <p class ="ad-connect-ref-title">Вступить</p>#}
+{#                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-right" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--svg-ref-color)" fill="none" stroke-linecap="round" stroke-linejoin="round">#}
+{#                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>#}
+{#                        <line x1="7" y1="7" x2="17" y2="17"/>#}
+{#                        <polyline points="17 8 17 17 8 17" />#}
+{#                    </svg>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
 
 </section>
 

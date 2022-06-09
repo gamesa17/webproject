@@ -50,7 +50,8 @@
         </div>
 
         <div style="height: 80%; width: 66.66%; margin-right: 5%; display: flex; align-items: center;">
-            <form action="" style="width: 100%; height: 100%;  display: flex; align-items: center; justify-content: center;"> 
+            <form action="{% url 'newname' %}" method="post" style="width: 100%; height: 100%;  display: flex; align-items: center; justify-content: center;">
+                {% csrf_token %}
             <div id="name-edit-container" style="width: 30%; display: flex; align-items: center; flex-direction: column;">
                 <input class="input__bar"  id = "editname-input"  type="text" name="username" placeholder="-" spellcheck="false" style="height: 20%; width: 70%; font-size: var(--font-medium);">
                 <input class ="textbtn" type="submit" value="Изменить" 
@@ -61,7 +62,7 @@
                 --hover-underline: underline">
             </input>
             </div>
-            <p id = "profile-name" style="font-size: var(--font-large); color: white;">SBER</p>
+            <p id = "profile-name" style="font-size: var(--font-large); color: white;">{{ user.username }}</p>
             </form>
             <button class="textbtn" id = "editname-btn" onclick="EditName()"
             style="--color-background: var(--color-blue-embient);

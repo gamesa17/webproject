@@ -53,8 +53,8 @@
 <div class="adprofile__body">
     <div class="container" style="height: 100%; width: 90%; display: flex; flex-wrap: wrap;">
     <div class="adprofile__info">
-        <div style="display: flex; height: 15%; align-items: center;margin-left: 10; background-color:var(--color-first);">
-            <a href="" class="adprofile__author__ref">Сбер</a>
+        <div style="display: flex; height: 15%; align-items: center;margin-left: 10%; background-color:var(--color-first);">
+            <a href="" class="adprofile__author__ref">{{ get_task.title}}</a>
         </div>
         <div style="display: flex; height: 5%; align-items: center;  background-color:var(--color-first);">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye-check" width="" height="70%" viewBox="0 0 24 24" stroke-width="1.7" stroke="var(--color-black-embient)" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -67,17 +67,8 @@
         </div>
 
         <div style="display: flex; height: 70%; background-color: var(--color-first);">
-            <p class="adprofile__info__text">Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-                Предоставте ваш готовый проект и получите возможность получения гранта и поддержки от Сбер.
-
-                С уважением - команда Сбер.
+            <p class="adprofile__info__text">
+                {{ get_task.content }}
             </p>
         </div>
 
@@ -101,16 +92,128 @@
         <div class="scaleable__image" style="background-color: brown;">
         </div>
     </div>
-
+{% if user.username != get_task.author.username %}
+<form method="post">
     <div class="adprofile__confirm">
-        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Вступить</button>
-        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Больше не показывать</button>
+        {% csrf_token %}
+        {{ form_req.author_name }}<br>
+        <button class="unibtn" type="submit" name="sendreq" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Вступить</button>
+{#        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Больше не показывать</button>#}
     </div>
-
+</form>
+{% endif %}
     </div>
 </div>
 
 </section>
+
+{% if user.username == get_task.author.username %}
+    <section class="vacant__section" style="width: 90%;  display:
+    grid; align-items: center;  row-gap: 20px; margin: auto; column-gap: 15px;">
+        {% for req in reqs %}
+            {% if req.response == None %}
+                <form method="post">
+                    {% csrf_token %}
+                    <div class = "vacant__card" style="height: 20vh; width: 100%;">
+                        <div style="height: 2px; background-color: var(--color-rigid);"></div>
+                        <div style="height: 100%; width: 100%; background-color: var(--color-first); display: flex;">
+                            <div style="width: 20%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                                <img src="{% static 'bboard/mos-polytech.jpg' %}" alt="" style="height: 70%; width: 70%; border-radius: 20px; object-fit: contain;">
+                            </div>
+
+                            <div style="width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                                <a href=" " style="font-size: var(--font-small); margin: 0; margin-top: 5%; color: var(--color-secondary);">{{ req.author_name }}</a>
+                                <p style="font-size: calc(var(--font-tiny)); margin-bottom: 5%; color: var(--color-secondary);">
+                                </p>
+                            </div>
+
+                            <div style="width: 30%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">
+                                <button class="textbtn" type="submit" name="принять{{req.id}}" onclick = "closeUpSettings(this)"
+                                style="height: 100%; align-self: center;
+                                --color-basic-text: var(--color-blue-embient);
+                                --color-hover-text: var(--color-blue-embient);
+                                --hover-underline: underline;
+                                display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                Принять
+                                <img src="{% static 'bboard/plus.svg' %}" alt="" style="height: 30px; width: 30px;">
+                                </button>
+
+                                <button class="textbtn" type="submit" name="отклонить{{req.id}}" onclick = "closeUpSettings(this)"
+                                style="height: 100%; align-self: center;
+                                --color-basic-text: #FF6363;
+                                --color-hover-text: #FF6363;
+                                --hover-underline: underline;
+                                display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                                Отклонить
+                                <img src="{% static 'bboard/delete-cross-red.svg' %}" alt="" style="height: 30px; width: 30px;">
+                                </button>
+                            </div>
+                        </div>
+                        <div style="height: 2px; background-color: var(--color-rigid);"></div>
+                    </div>
+                </form>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endif %}
+
+
+{#<section class="profile__response" style="width: 100%">#}
+{#    <div class="profile__response__header" style="height: 15vh; width: 100%;">#}
+{#        <div class="container" style="width:90%; height: 100%; display: flex; flex-direction: column;" >#}
+{#        <div style="position: relative; top: 20px; height: 2px; width: 100%; background-color: var(--color-secondary);"> </div>#}
+{#        <p style="color: var(--color-secondary); font-size:  var(--font-small); align-self: center; justify-self: center; margin-top: auto;">Мой отклик</p>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="profile__responce__body">#}
+{#        <div class="container" style="width:90%; height: 100%; display: flex; flex-direction: column;#}
+{#        row-gap: 20px; margin: auto; column-gap: 15px; display: grid; align-items: center;" >#}
+{##}
+{#            <div class="response__card">#}
+{#                <div style="height: 2px; background-color: var(--color-rigid);"></div>#}
+{#                <div class="responce__card__body" style="height: 20vh; display: flex;">#}
+{#                    <div style="width: 20%; height: 100%; display: flex; align-items: center; justify-content: center;">#}
+{#                        <img src="{% static 'bboard/mos-polytech.jpg' %}" alt="" style="height: 70%; width: 70%; border-radius: 20px; object-fit: contain;">#}
+{#                    </div>#}
+{##}
+{#                    <div style="width: 50%; height: 100%; display: flex; flex-direction: column; justify-content: center;">#}
+{#                        <a href=" " style="font-size: var(--font-small); margin: 0; margin-top: 5%; color: var(--color-secondary);">Projectname</a>#}
+{#                        <p style="font-size: calc(var(--font-tiny)); margin-bottom: 5%; color: var(--color-secondary);">#}
+{#                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog#}
+{#                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog#}
+{#                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog#}
+{#                            Discription^ all about me^ my projects^ my car^ my work^ my family^ my dog#}
+{#                        </p>#}
+{#                    </div>#}
+{##}
+{#                    <div style="width: 30%; height: 100%; display: flex; flex-direction: column; justify-content: space-around;">#}
+{#                        <button class="textbtn" onclick = "closeUpSettings(this)"#}
+{#                        style="height: 100%; align-self: center; margin-top: auto;#}
+{#                        --color-basic-text: var(--color-blue-embient);#}
+{#                        --color-hover-text: var(--color-blue-embient);#}
+{#                        /* --hover-underline: underline; */#}
+{#                        display: flex; flex-direction: column; justify-content: center; align-items: center;">#}
+{#                        Состояние: в обработке#}
+{#                        </button>#}
+{##}
+{#                        <button class="textbtn" onclick = "closeUpSettings(this)"#}
+{#                        style="height: 100%; align-self: center;#}
+{#                        --color-basic-text: #FF6363;#}
+{#                        --color-hover-text: #FF6363;#}
+{#                        --hover-underline: underline;#}
+{#                        display: flex; flex-direction: column; justify-content: center; align-items: center;">#}
+{#                        Отменить заявку#}
+{#                        <img src="{% static 'bboard/delete-cross-red.svg' %}" alt="" style="height: 30px; width: 30px;">#}
+{#                        </button>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div style="height: 2px; background-color: var(--color-rigid);"></div>#}
+{#            </div>#}
+{##}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
 
 <section class="footer">
     <div class="container__footer" style="width:90%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">

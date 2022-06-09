@@ -1,11 +1,12 @@
 from django.http import HttpResponse
 #from django.template import loader
 from django.shortcuts import render
-from .forms import BBCreateView
-from .models import BBoard
+from .forms import BBCreateView, AcceptReqForm, MakeReqForm
+from .models import BBoard, Request, Member
 from .models import Rubric
 from .forms import BBForm
 from django.shortcuts import render, redirect
+
 
 def index(request):
     bbs = BBoard.objects.all()
@@ -32,6 +33,45 @@ def CompanyView(request, id):
     context = {'all_objects':all_objects}
     return render(request, 'bboard/company_view.html', context)
 
+def details(request, id):
+    get_task = BBoard.objects.get(id=id)
+    reqs = get_task.requests.all()
+    if request.method == 'POST':
+        if "sendreq" in request.POST:
+            item = Request(author=request.user, author_name=request.user.username)
+            form = MakeReqForm(request.POST, instance=item)
+            if form.is_valid():
+                get_task.requests.add(form.save())
+        else:
+            for item in reqs:
+                buttonaccept = "принять" + str(item.id)
+                buttonreject = "отклонить" + str(item.id)
+                if buttonaccept in request.POST:
+                    item.response = True
+                    item.save()
+                    req = item
+                    form = AcceptReqForm(request.POST, instance=req)
+                    if form.is_valid():
+                        form.save()
+                        upd_req = form.save()
+                        new_member = Member(member=upd_req.author, member_name=upd_req.author_name)
+                        new_member.save()
+                        get_task.members.add(new_member)
+                if buttonreject in request.POST:
+                    item.response = False
+                    item.save()
+    form_req = MakeReqForm()
+    form_accept = AcceptReqForm()
+    context = {
+        'title': 'Подробнее',
+        'get_task': get_task,
+        'form_req': form_req,
+        'reqs': reqs,
+        'form_accept': form_accept
+    }
+    print(reqs)
+    return render(request, 'bboard/adprofile.html', context)
+
 def auth(request):
     return render(request, 'bboard/auth2.html')
 
@@ -49,15 +89,13 @@ def adcreate(request):
 
 def createnew(request):
     if request.method == 'POST':
-        form = BBCreateView(request.POST)
-
-
+        bboard = BBoard(author=request.user)
+        form = BBCreateView(request.POST, instance=bboard)
         if form.is_valid():
-            form.save()
+            request.user.bboards.add(form.save())
+            print(request.user.bboards.all())
             return redirect('index')
-
     else:
         form = BBCreateView()
-
     return render(request, 'layout/basic2.html')
 

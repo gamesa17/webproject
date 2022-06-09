@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-from .models import BBoard
+from .models import BBoard, Request, Member
 from .models import Rubric
 
 
@@ -12,3 +12,5 @@ class BBoardAdmin(admin.ModelAdmin):
 
 admin.site.register(BBoard, BBoardAdmin)
 admin.site.register(Rubric)
+admin.site.register(Request)
+admin.site.register(Member)

@@ -1,11 +1,10 @@
 from .forms import CustomUserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
-from .models import CustomUser
-from .forms import CustomUser
 from django.shortcuts import render, redirect
 from .forms import LoginForm
-from django.contrib.auth import authenticate, login
+from .models import CustomUser
+from django.contrib.auth import authenticate, login, logout
 
 
 # class SignUpView(generic.CreateView):
@@ -32,6 +31,8 @@ def register(request):
 
 
 def user_login(request):
+    if request.user.is_authenticated:
+        logout(request)
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
