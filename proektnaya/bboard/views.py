@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 
 def index(request):
     bbs = BBoard.objects.all()
+    for bb in bbs:
+        print(bb)
     rubrics = Rubric.objects.all()
     context = {'bbs':bbs, 'rubrics':rubrics}
     return render(request, 'layout/basic2.html', context)
@@ -28,10 +30,10 @@ def by_rubric(request, rubric_id):
     return render(request, 'bboard/by_rubric.html', context)
 
 
-def CompanyView(request, id):
+def bboardview(request, id):
     all_objects = BBoard.objects.get(id=id)
     context = {'all_objects':all_objects}
-    return render(request, 'bboard/company_view.html', context)
+    return render(request, 'bboard/adprofile.html', context)
 
 def details(request, id):
     get_task = BBoard.objects.get(id=id)
@@ -69,7 +71,7 @@ def details(request, id):
         'reqs': reqs,
         'form_accept': form_accept
     }
-    print(reqs)
+    print(get_task)
     return render(request, 'bboard/adprofile.html', context)
 
 def auth(request):
@@ -98,4 +100,7 @@ def createnew(request):
     else:
         form = BBCreateView()
     return render(request, 'layout/basic2.html')
+
+def showboard(request):
+    return render(request, 'bboard/adprofile.html')
 

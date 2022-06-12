@@ -14,19 +14,20 @@ from django.contrib.auth import authenticate, login, logout
 
 def register(request):
     if request.method == 'POST':
-        print(request.POST)
 
         form = CustomUserCreationForm(request.POST)
 
-
         if form.is_valid():
             form.save()
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, user)
+            print(request.user)
             return redirect('profile')
 
     else:
         form = CustomUserCreationForm()
 
-    print('form is not valid', form.errors)
+    print('form is not valid', form_reg.errors)
     return render(request, 'bboard/profile.html')
 
 
@@ -61,6 +62,15 @@ def editname(request):
         redirect('profile')
     return render(request, 'bboard/profile.html')
 
+def editemail(request):
+    if request.method == 'POST':
+        print(request.POST)
+        request.user.email = request.POST['email']
+        print(request.user.email)
+        request.user.save()
+        redirect('profile')
+
+    return render(request, 'bboard/profile.html')
 
 def showprofile(request):
     #profile = request.user

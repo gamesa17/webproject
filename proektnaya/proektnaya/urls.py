@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 from bboard.views import index
-from bboard.views import CompanyView
 from bboard.views import auth
 from accounts.views import register
 from accounts.views import showprofile
@@ -29,7 +28,6 @@ from bboard.views import createnew
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bboard/company/<int:id>', CompanyView, name='company'),
     path('auth/', auth, name = 'auth'),
     path('profile/', profile, name = 'profile'),
     path('', include("accounts.urls")),
