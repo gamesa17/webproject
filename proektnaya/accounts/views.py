@@ -50,6 +50,7 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'bboard/profile.html')
 
+
 def editname(request):
     if request.method == 'POST':
         print(request.POST)
@@ -59,18 +60,16 @@ def editname(request):
         request.user.username = request.POST['user_name']
         print(request.user.username)
         request.user.save()
-        redirect('profile')
-    return render(request, 'bboard/profile.html')
+    return redirect('profile')
 
-def editemail(request):
+
+def editeinf(request):
     if request.method == 'POST':
-        print(request.POST)
-        request.user.email = request.POST['email']
-        print(request.user.email)
+        request.user.email = request.POST.get('email')
+        request.user.skills = request.POST.get('description')
         request.user.save()
-        redirect('profile')
+    return redirect('profile')
 
-    return render(request, 'bboard/profile.html')
 
 def showprofile(request):
     #profile = request.user
@@ -78,5 +77,14 @@ def showprofile(request):
     context = {'profile': profile}
     #print(request.user.is_authenticated())
     return render(request, 'bboard/users.html', context)
+
+
+def user_logout(request):
+    print("вошли")
+    if request.method == 'POST':
+        if 'logout' in request.POST:
+            logout(request)
+            print("пользователь вышел")
+    return redirect('index')
 
 

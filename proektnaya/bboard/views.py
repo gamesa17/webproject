@@ -38,6 +38,13 @@ def bboardview(request, id):
 def details(request, id):
     get_task = BBoard.objects.get(id=id)
     reqs = get_task.requests.all()
+    members = get_task.members.all()
+    reqs_list = []
+    param = None
+    for i in reqs:
+        reqs_list.append(i.author_name)
+    if request.user.username in reqs_list:
+        param = True
     if request.method == 'POST':
         if "sendreq" in request.POST:
             item = Request(author=request.user, author_name=request.user.username)
@@ -69,7 +76,9 @@ def details(request, id):
         'get_task': get_task,
         'form_req': form_req,
         'reqs': reqs,
-        'form_accept': form_accept
+        'form_accept': form_accept,
+        'members': members,
+        'param': param
     }
     print(get_task)
     return render(request, 'bboard/adprofile.html', context)

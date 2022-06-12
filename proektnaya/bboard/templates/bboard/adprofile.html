@@ -15,7 +15,7 @@
 <div class="header" id="header">
     <div class="header__wrapper">
         <a href="{% url 'index' %}" class="header-nav-ref">Главная</a>
-        <a href="" class="header-nav-ref">Объявления</a>
+        <a href="{% url 'index' %}" class="header-nav-ref">Объявления</a>
         <a href="" style="right: 10px; position: absolute; display: block; height: calc(var(--index-scale) * 2) ; width: calc(var(--index-scale) * 2);">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="100%" height="100%" viewBox="0 0 24 24" stroke-width="1.5" stroke="var(--color-secondary)" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -69,6 +69,11 @@
         <div style="display: flex; height: 70%; background-color: var(--color-first);">
             <p class="adprofile__info__text">
                 {{ get_task.content }}
+            <p class="adprofile__info__text">
+                Участники:
+                {% for member in members %}
+                    {{ member }}
+                {% endfor %}
             </p>
         </div>
 
@@ -92,15 +97,24 @@
         <div class="scaleable__image" style="background-color: brown;">
         </div>
     </div>
-{% if user.username != get_task.author.username %}
-<form method="post">
-    <div class="adprofile__confirm">
-        {% csrf_token %}
-        {{ form_req.author_name }}<br>
-        <button class="unibtn" type="submit" name="sendreq" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Вступить</button>
-{#        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Больше не показывать</button>#}
-    </div>
-</form>
+{% if user.is_authenticated %}
+    {% if user.username != get_task.author.username %}
+        {% if not param %}
+        <form method="post">
+            <div class="adprofile__confirm">
+                {% csrf_token %}
+                {{ form_req.author_name }}<br>
+                <button class="unibtn" type="submit" name="sendreq" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Вступить</button>
+        {#        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Больше не показывать</button>#}
+            </div>
+        </form>
+        {% else %}
+            <div class="adprofile__confirm">
+                <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Вы уже отправили заявку</button>
+        {#        <button class="unibtn" style="--color-basic: var(--color-blue-embient); --color-basic-text: white;">Больше не показывать</button>#}
+            </div>
+        {% endif %}
+    {% endif %}
 {% endif %}
     </div>
 </div>
