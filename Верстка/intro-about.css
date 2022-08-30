@@ -1,0 +1,236 @@
+.intro-about-section{
+    margin-top: 48px;
+    overflow: hidden;
+    height: 90vh;
+    background: url(resources/lines-bg-horizontal.png), radial-gradient(50% 50% at 50% 50%, #D2EEE7 0%, rgba(210, 238, 231, 0.770833) 18.23%, #FFFFFF 81.25%);
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: auto 80%;
+    max-height: 1000px;
+}
+
+/* #back-blur-container{
+    height: calc(100% - 40px);
+    border-radius: 20px;
+    background-color: #8b8b8b13;
+    backdrop-filter: blur(10px);
+    padding: 10px;
+}
+
+@media (max-width: 1043px) {
+    #back-blur-container{
+        background-color: rgb(255, 255, 255);
+    }
+} */
+
+.i-a-grid-layer{
+    margin-top: 20px;
+}
+
+.i-a-grid-box{
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 20px;
+    background-color: var(--active-bg);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    transform: scale(1, 1);
+    transition: .4s;
+}
+
+.i-a-grid-box:hover{
+    /* background-color: var(--uni-grey-light); */
+    /* box-shadow:0px 0px 3px 2px var(--uni-grey-light); */
+    z-index: 1;
+}
+
+.i-a-grid-text-box{
+    box-sizing: border-box;
+    margin: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--active-bg);
+    color: var(--active-secondary-text);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    transition: .4s;
+}
+
+
+.i-a-grid-text-box h4{
+    color: var(--active-main-text);
+    transition: .4s;
+    margin-bottom: 20px;
+}
+
+.i-a-10-grid{
+    width: 10%;
+}
+
+.i-a-15-grid{
+    width: 15%;
+}
+
+.i-a-20-grid{
+    width: 20%;
+    fill: var(--active-main-text);
+}
+
+.i-a-25-grid{
+    width: 25%;
+    fill: var(--active-main-text);
+}
+
+.i-a-30-grid{
+    width: 30%;
+    fill: var(--active-main-text);
+}
+
+.i-a-35-grid{
+    width: 35%;
+    stroke: var(--active-main-text);
+    stroke-width: 2.75;
+}
+
+.i-a-40-grid{
+    width: 40%;
+}
+
+
+.i-a-50-grid{
+    width: 50%;
+    fill: var(--active-main-text);    
+}
+
+@media (min-width: 667px) {
+    
+    .i-a-grid-text-box:hover{
+        z-index: 1;
+    }
+
+    .i-a-grid-text-box:hover h4{
+        transform: scale(1.1, 1.1);
+    }
+
+    .i-a-10-grid:hover{
+        width: 15%;
+    }
+
+    .i-a-15-grid:hover{
+        width: 20%;
+    }
+
+    .i-a-20-grid:hover{
+        width: 25%;
+    }
+
+    .i-a-25-grid:hover{
+        width: 30%;
+    }
+
+    .i-a-30-grid:hover{
+        width: 35%;
+    }
+
+    .i-a-35-grid:hover{
+        width: 40%;
+        animation: anim-stroke-grad .3s linear;
+    }
+
+    .i-a-40-grid:hover{
+        width: 45%;
+    }
+
+    .i-a-50-grid:hover{
+        width: 55%;
+    }
+
+    .i-a-50-grid:hover svg{
+        animation: anim-appear .7s linear;
+        fill: var(--active-main-text);
+    }
+}
+
+@media (max-width: 665px) {
+    .intro-about-section{
+        align-items: center;
+        background-color: var(--active-bg);
+        background-image: none;
+    }
+    .i-a-grid-hidden{
+        display: none
+    }
+    #back-blur-container{
+        padding: 0px;
+    }
+    .i-a-grid-layer{
+        margin-top: 10px;
+    }
+    .i-a-grid-box{
+        width: 40%;
+        margin: 5px;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+    .i-a-grid-text-box{
+        width: 60%;
+        margin: 5px;
+        box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+    }
+
+}
+
+@media (max-width: 570px) {
+    .intro-about-section{
+        margin-top: 10vh;
+    }
+    .i-a-grid-box{
+        font-size: 13px;
+        border-radius: 14px;
+    }
+    .i-a-grid-text-box{
+        border-radius: 14px;
+    }
+}
+
+@media (max-height: 900px) {
+    .intro-about-section{
+        min-height: 836px;
+    }
+}
+
+@keyframes anim-appear{
+    0%{
+        fill: var(--active-main-text);
+        stroke-width:0;
+    }
+    50%{
+        fill: var(--active-bg);
+        transform: scale(1,1);
+    }
+    65%{
+        transform: scale(2.5, 2.5);
+    }
+    75%{
+        fill: var(--active-bg);
+    }
+    100%{
+        fill: var(--active-main-text);
+        stroke-width:0;
+        transform: scale(1,1);
+    }
+}
+
+@keyframes anim-stroke-grad{
+    0%{
+        stroke: var(--active-main-text);
+    }
+    50%{
+       stroke-width: 0;
+    }
+    100%{
+        fill: var(--uni-main-text);
+        stroke-width: 2.75;
+    }
+}
